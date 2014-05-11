@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to demonstrate the prompt box.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x;
+
+    var person = prompt("Did u refill","");
+   localStorage.setItem("filled", person);
+   alert("thank you");
+}
+</script>
+
+</body>
+</html>

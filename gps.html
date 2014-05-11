@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Device Properties Example</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+         
+   function onPositionUpdate(position)
+            {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+               
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(onPositionUpdate);  
+}          
+else
+                alert("navigator.geolocation is not available");
+}
+function myFunction() {
+    window.location.href = 'https://www.google.co.in/maps/search/nearest+petrol+bunks/@17.4123487,78.4080455,11z/data=!3m1!4b1';
+}
+    </script>
+  </head>
+  <body>
+<div data-role="header" data-position="inline"> 
+	<h1>Fuel Maintenance And Budget</h1>
+<a href="index.html" data-role="button" data-icon="arrow-l" rel="external" data-ajax="false" data-inline="true">Back</a>
+</div>
+<label>Are you running of fuel??Get the nearest fuel stations</label>
+
+<button onclick="myFunction()" data-inline="true">Click</button>
+  </body>
+</html>

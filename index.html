@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>FUEL MAINTENANCE AND BUDGET</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<div id="result"></div>
+var budget;
+var odometer;
+var odometer1;
+var fuel;
+var fuel1;
+var fueltype;
+<script>
+// Check browser support
+if (typeof(Storage) != "undefined")
+  {
+  
+  // Retrieve
+  budget=document.getElementById("result").innerHTML=localStorage.getItem("budget");
+fuel=document.getElementById("result").innerHTML=localStorage.getItem("fuel");
+fueltype=document.getElementById("result").innerHTML=localStorage.getItem("fueltype");
+odometer1=parseInt(odometer);
+fuel1=parseInt(fuel);
+ }
+</script>
+<script>
+function startTime() {
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    if(h == "16" && m=="13" && s=="00"){
+var refill = prompt("Did u refill","");
+refill1=parseInt(refill);
+fuel1=fuel1 + refill1;
+   localStorage.setItem("fuel", fuel1);
+}
+ var t = setTimeout(function(){startTime()},500);
+}
+function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+<script type="text/javascript" charset="utf-8">
+ 
+var tbudget;
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+     
+      
+   function onPositionUpdate(position){
+           
+                 var lat1 = position.coords.latitude;
+                var lon1 = position.coords.longitude;
+setInterval(function(){
+
+                var lat2 =position.coords.latitude;
+                var lon2 =position.coords.longitude;
+                var radlat1 = Math.PI * lat1/180
+		var radlat2 = Math.PI * lat2/180
+		var radlon1 = Math.PI * lon1/180
+		var radlon2 = Math.PI * lon2/180
+		var theta = lon1-lon2
+		var radtheta = Math.PI * theta/180
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		dist = Math.acos(dist)
+		dist = dist * 180/Math.PI
+		dist = dist * 60 * 1.1515
+		dist = dist * 1.609344  
+       	 	odometer=odometer+dist;
+		localStorage.setItem("odometer", odometer);
+		lat1=lat2;
+		lon1=lon2;
+            },3000);
+}
+            if(navigator.geolocation)
+                navigator.geolocation.getCurrentPosition(onPositionUpdate);
+            else
+                alert("navigator.geolocation is not available");
+</script>
+
+</head> 
+<body onload="startTime()">
+<div id="txt"></div>
+<div data-role="page">
+
+	
+<div data-role="header" data-position="inline"> 
+	<h1>Fuel Maintenance And Budget</h1>
+	<a href="settings.html" data-icon="gear" class="ui-btn-right" rel="external" data-ajax="false">Settings</a>
+</div>
+	
+	<div data-role="content">	
+	<ul data-role="listview" data-inset="true" data-filter="true">
+	<li><a href="mileage.html" rel="external" data-ajax="false">Mileage</a></li>
+	<li><a href="odometer.html" rel="external" data-ajax="false">Odometer</a></li>
+	<li><a href="gps.html" rel="external" data-ajax="false">Nearest petrol bunks</a></li>
+	</ul>		
+	</div><!-- /content -->
+</div><!-- /page -->
+</body>
+</html>

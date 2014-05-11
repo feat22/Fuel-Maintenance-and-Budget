@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>FUEL MAINTENANCE AND BUDGET</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<div id="result"></div>
+var odometer;
+var ptank;
+var a;
+var b;
+var fuel;
+<script>
+function store(){
+var ptank = document.getElementById("basico").value;	
+if (typeof(Storage) != "undefined")
+  {
+  // Store
+  odometer=document.getElementById("result").innerHTML=localStorage.getItem("odometer");
+  fuel=document.getElementById("result").innerHTML=localStorage.getItem("fuel");  
+var a=parseInt(odometer);
+  var b=parseInt(ptank);
+  var fuel1=parseInt(fuel);
+  localStorage.setItem("fuel", b);
+  b=fuel1-b;
+  var c=a/b;
+  alert(a);
+alert(b);
+alert(c);
+ 
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Storage...";
+  }
+ 
+}
+
+</script>
+</head> 
+<body> 
+<div data-role="page">
+
+	<div data-role="header" data-position="inline">
+	<a href="index.html" data-role="button" data-icon="arrow-l" rel="external" data-ajax="false" data-inline="true">Back</a>
+	<h1>Fuel Maintenance and Budget</h1>
+</div>	
+<div data-role="content">	
+			<script>
+// Check browser support
+if (typeof(Storage) != "undefined")
+  {
+  
+  // Retrieve
+odometer=document.getElementById("result").innerHTML=localStorage.getItem("odometer");
+document.write(odometer);
+ }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Storage...";
+  }
+</script>
+<label for="basic">Fuel In The Tank At Present:</label>
+    <input type="text" name="nameo" id="basico" value=""  />
+	<a href="#" data-role="button" onClick="store()" data-inline="true">Submit</a>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>FUEL MAINTENANCE AND BUDGET</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<div id="result"></div>
+var odometer;
+var odometer1;
+<style>
+body
+{
+background-color:Black;
+}
+h1
+{
+color:orange;
+text-align:center;
+}
+p
+{
+font-family:"Arial";
+font-size:20px;
+}
+</style>
+</head> 
+<body> 
+<div data-role="page">
+
+	<div data-role="header" data-position="inline">
+	<a href="index.html" data-role="button" data-icon="arrow-l" rel="external" data-ajax="false" data-inline="true">Back</a>
+	<h1>Fuel Maintenance and Budget</h1>
+</div>	
+<div data-role="content">	
+			<script>
+// Check browser support
+if (typeof(Storage) != "undefined")
+  {
+  
+  // Retrieve
+odometer=document.getElementById("result").innerHTML=localStorage.getItem("odometer");
+odometer1=document.getElementById("result").innerHTML=localStorage.getItem("odometer1");
+odometer=parseInt(odometer);
+odometer1=parseInt(odometer1);
+odometer2=odometer+odometer1;
+document.write(odometer2);
+ }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Storage...";
+  }
+</script>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>
