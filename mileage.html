@@ -26,9 +26,7 @@ var a=parseInt(odometer);
   localStorage.setItem("fuel", b);
   b=fuel1-b;
   var c=a/b;
-  alert(a);
-alert(b);
-alert(c);
+alert("mileage is:"+ c);
  
   }
 else
@@ -55,7 +53,6 @@ if (typeof(Storage) != "undefined")
   
   // Retrieve
 odometer=document.getElementById("result").innerHTML=localStorage.getItem("odometer");
-document.write(odometer);
  }
 else
   {
